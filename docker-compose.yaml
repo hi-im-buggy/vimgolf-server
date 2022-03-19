@@ -16,8 +16,10 @@ services:
       DOCKER_TLS_CERTDIR: ""
     command: --tls=false
     volumes:
-      - vimgolf-submissions:/tmp
+      - vimgolf-submissions:/home/buggy/felicity22/vimgolf/vimgolf-server/vimgolf-submissions/
   vimgolf-backend:
+    ports:
+      - 4242:4242
     build:
       context: .
     environment:
@@ -31,8 +33,3 @@ volumes:
   vimgolf-submissions:
     external: true
   vimgolf-db-data:
-networks:
-  default:
-    external:
-      name: felicity_nw
-

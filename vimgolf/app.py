@@ -16,7 +16,7 @@ from vimgolf.models.orm import db
 from vimgolf.utils import docker_init, get_scores
 
 from flask_limiter import Limiter
-from flask_limiter.util import get_ipaddr
+from flask_limiter.util import get_remote_address
 
 from base64 import b64decode
 
@@ -27,7 +27,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = getenv(
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 db.create_all(app=app)
-limiter = Limiter(app, key_func=get_ipaddr)
+limiter = Limiter(app, key_func=get_remote_address)
 
 total_challenges = 0
 CHALLENGE_PATH = "challenges"
